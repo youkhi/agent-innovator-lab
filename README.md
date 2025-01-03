@@ -4,14 +4,44 @@ The purpose of this repository includes RAG best practices, along with tools and
 > This repo has been populated by an initial template to help get you started. Please
 > make sure to update the content to build a great experience for community-building.
 
-As the maintainer of this project, please make a few updates:
+## Program Ideation Backlog (Temp)
+#### 0_basic_rag
+#### 1_retrieval (멀티벡터, hyde, parent 같은 pre-retrieval, 리랭크 같은 post-retrieval)
+#### 2_tools (기본 tool 사용법, agentic rag같은 기본 개념)
+#### 3_domain-specific-rag (RAFT)
+#### 4_adaptive_rag (맨 앞단에서 라우팅을 통해 질문에 따라 적응적으로 대응)
+#### 5_reflection (중간중간에 계속 evaluation/groundless 체크를 통해 답변 검증)
+#### 6_multi-agent-supervisor (감독자 에이전트가 여러 에이전트 관리)
+#### 7_multi-agent-collabration (각 페르소나별 에이전트가 역할을 수행..)
+#### 8_simulation-and-evaluation (배포 전에 AI봇이 사용자로 빙의해서 테스트하고 자체 평가)
 
-- Improving this README.MD file to provide a great experience
-- Updating SUPPORT.MD with content about this project's support experience
-- Understanding the security reporting process in SECURITY.MD
-- Remove this section from the README
 
-## List of workshops
+#### lab0_basic_rag
+#### lab1_agent_comparison
+#### lab1_caching
+#### lab1_evaluation
+#### lab1_intent_routing
+#### lab1_LLM_fine_tuning
+#### lab1_multi-vector_retrieval
+
+### 00_Basic
+### 01_Agentic-Design-Patterns
+### 01_Evaluation-Driven-Patterns
+### 01_Advanced-RAG-Patterns
+
+----------------------------------------------------------------------------------------
+## 01_Evaluation-Driven-Patterns 
+#### 01_retrieval-accuracy-check-web-search-SemanticKernel.ipynb 
+#### 02_retrieval-accuracy-check-web-search-LangGraph.ipynb 
+#### 03_relevance-check-query-rewrite-SemanticKernel-SemanticKernel.ipynb
+#### 04_relevance-check-query-rewrite-LangGraph.ipynb
+#### 05_groundedness-check-human-in-the-loop-SemanticKernel.ipynb
+#### 06_groundedness-check-human-in-the-loop-LangGraph.ipynb
+#### 07_simulation-evaluation-layer-in-RAG-SemanticKernel.ipynb
+#### 08_simulation-evaluation-layer-in-RAG-LangGraph.ipynb
+
+
+## List of workshops (TBD)
 
 Provided below is a list of currently published modules:
 
