@@ -15,15 +15,6 @@ The purpose of this repository includes RAG best practices, along with tools and
 #### 7_multi-agent-collabration (각 페르소나별 에이전트가 역할을 수행..)
 #### 8_simulation-and-evaluation (배포 전에 AI봇이 사용자로 빙의해서 테스트하고 자체 평가)
 
-
-#### lab0_basic_rag
-#### lab1_agent_comparison
-#### lab1_caching
-#### lab1_evaluation
-#### lab1_intent_routing
-#### lab1_LLM_fine_tuning
-#### lab1_multi-vector_retrieval
-
 ### 00_Basic
 ### 01_Agentic-Design-Patterns
 ### 01_Evaluation-Driven-Patterns
@@ -39,6 +30,22 @@ The purpose of this repository includes RAG best practices, along with tools and
 #### 06_groundedness-check-human-in-the-loop-LangGraph.ipynb
 #### 07_simulation-evaluation-layer-in-RAG-SemanticKernel.ipynb
 #### 08_simulation-evaluation-layer-in-RAG-LangGraph.ipynb
+
+## 02_Agentic-Design-Patterns
+#### 01_Reflection
+#### 02_Adaptive-RAG
+#### 03_Planning
+#### 04_Multi-Agent-Supervisor
+#### 05_Multi-Agent-Hierarchy
+#### 06_Multi-Agent-Collaboration
+
+## 03_Optimization-Design-Patterns
+#### 01_Caching
+#### 02_Long-Context-Compression
+#### 03_Choose-Your-SLMs-LLMs
+
+## 04_Use-Cases
+#### 반드시 코드 스니펫일 필요는 없음. 전반적인 유스케이스(콜센터 상담, 호텔/비행기 예약)에 집중
 
 
 ## List of workshops (TBD)
