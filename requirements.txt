@@ -1,0 +1,14 @@
+azure-search-documents==11.5.2
+openai==1.59.8
+python-dotenv==1.0.1
+tenacity==9.0.0
+pandas==2.2.3 
+tiktoken==0.8.0
+semantic-kernel==1.18.2
+asyncio==3.4.3
+azure-ai-projects==1.0.0b5
+autogen-core==0.4.2
+autogen-agentchat==0.4.2
+autogen-ext==0.4.2
+langchain-openai==0.3.0
+azure-genai-utils
