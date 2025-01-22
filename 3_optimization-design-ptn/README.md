@@ -1,5 +1,5 @@
-#### 01_Caching
-#### 02_Long-Context-Compression
-#### 03_Choose-Your-SLMs-LLMs
-
-#
+#### 01_Caching (CRAG)
+#### 02_Long-Context-Compression (Cost+Latency optimization; Token length optimization)
+#### 03_Choose-Your-SLMs-LLMs (Cost Optimization)
+#### 04_o1 vs multi agent (Quality Optimization + Simpler Design)
+#### 05_CosmosDB Integration
