@@ -7,8 +7,12 @@ tiktoken==0.8.0
 semantic-kernel==1.18.2
 asyncio==3.4.3
 azure-ai-projects==1.0.0b5
+azure-ai-evaluation==1.2.0
 autogen-core==0.4.2
 autogen-agentchat==0.4.2
 autogen-ext==0.4.2
 langchain-openai==0.3.0
 azure-genai-utils
+promptflow-devkit==1.17.2
+# ModuleNotFoundError: No module named 'bs4'
+bs4==0.0.2
