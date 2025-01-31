@@ -5,6 +5,26 @@ The purpose of this repository includes RAG best practices, along with tools and
 > make sure to update the content to build a great experience for community-building.
 
 ## Program Ideation Backlog (Temp)
+
+### 0_basic_rag
+### 1_agentic-design-patterns
+- 01_Reflection: Self-RAG, Corrective-RAG, Adaptive RAG
+- 02_Plan-and-Execute
+- 03_Multi-Agent: Supervisor, Hierarchy, Collaboration
+### 2_eval-design-patterns
+- 01_retrieval-accuracy-check-web-search
+- 02_relevance-check-query-rewrite
+- 03_groundedness-check-human-in-the-loop
+- 04_simulation-evaluation-layer-in-RAG
+
+### 3_optimization-design-patterns
+- 01_Caching
+- 02_Long-Context-Compression
+- 03_Choose-Your-SLMs-LLMs
+----------------------------------------------------------------------------------------
+
+### Backlogs
+
 #### 0_basic_rag
 #### 1_retrieval (멀티벡터, hyde, parent 같은 pre-retrieval, 리랭크 같은 post-retrieval)
 #### 2_tools (기본 tool 사용법, agentic rag같은 기본 개념)
@@ -14,35 +34,6 @@ The purpose of this repository includes RAG best practices, along with tools and
 #### 6_multi-agent-supervisor (감독자 에이전트가 여러 에이전트 관리)
 #### 7_multi-agent-collabration (각 페르소나별 에이전트가 역할을 수행..)
 #### 8_simulation-and-evaluation (배포 전에 AI봇이 사용자로 빙의해서 테스트하고 자체 평가)
-
-### 00_Basic
-### 01_Agentic-Design-Patterns
-### 01_Evaluation-Driven-Patterns
-### 01_Advanced-RAG-Patterns
-
-----------------------------------------------------------------------------------------
-## 01_Evaluation-Driven-Patterns 
-#### 01_retrieval-accuracy-check-web-search-SemanticKernel.ipynb 
-#### 02_retrieval-accuracy-check-web-search-LangGraph.ipynb 
-#### 03_relevance-check-query-rewrite-SemanticKernel-SemanticKernel.ipynb
-#### 04_relevance-check-query-rewrite-LangGraph.ipynb
-#### 05_groundedness-check-human-in-the-loop-SemanticKernel.ipynb
-#### 06_groundedness-check-human-in-the-loop-LangGraph.ipynb
-#### 07_simulation-evaluation-layer-in-RAG-SemanticKernel.ipynb
-#### 08_simulation-evaluation-layer-in-RAG-LangGraph.ipynb
-
-## 02_Agentic-Design-Patterns
-#### 01_Reflection
-#### 02_Adaptive-RAG
-#### 03_Planning
-#### 04_Multi-Agent-Supervisor
-#### 05_Multi-Agent-Hierarchy
-#### 06_Multi-Agent-Collaboration
-
-## 03_Optimization-Design-Patterns
-#### 01_Caching
-#### 02_Long-Context-Compression
-#### 03_Choose-Your-SLMs-LLMs
 
 ## 04_Use-Cases
 #### 반드시 코드 스니펫일 필요는 없음. 전반적인 유스케이스(콜센터 상담, 호텔/비행기 예약)에 집중
