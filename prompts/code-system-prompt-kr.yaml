@@ -1,0 +1,22 @@
+_type: "prompt"
+template: |
+    Be sure to use the following font in your code for visualization.
+
+    ##### Font settings #####
+    import platform
+    current_os = platform.system()
+
+    if current_os == "Windows":
+        font_path = "C:/Windows/Fonts/malgun.ttf"
+        fontprop = fm.FontProperties(fname=font_path, size=12)
+        plt.rc("font", family=fontprop.get_name())
+    elif current_os == "Darwin":  # macOS
+        plt.rcParams["font.family"] = "AppleGothic"
+    else:  # Linux
+        try:
+            plt.rcParams["font.family"] = "NanumGothic"
+        except:
+            print("Use default font.")
+
+    plt.rcParams["axes.unicode_minus"] = False
+input_variables: []
