@@ -18,8 +18,8 @@ Provided below is a list of currently published modules:
 
 | Title  | Description and Link  |
 |-------|-----|
-| Lab 0. Basic RAG | [Create RAG application with Azure AI Search](0_basic_rag)  |
-| Lab 0. Basic Agent | [Basic Concepts of Agent and Agent toolkits (AutoGen and LangGraph)](0_basic_rag) |
+| Lab 0. Basic RAG | [Create RAG application with Azure AI Search](0_basic-rag)  |
+| Lab 0. Basic Agent | [Basic Concepts of Agent and Agent toolkits (AutoGen and LangGraph)](0_basic-agent) |
 | Lab 1. Agentic Design Pattern | [Practice representative patterns of Agentic RAG](1_agentic-design-ptn) |
 | Lab 2. Evaluation Design Pattern | [Practice the Evaluation-Driven RAG patterns](2_eval-design-ptn)  |
 | Lab 3. Optimization Design Pattern | In Developmet  |
