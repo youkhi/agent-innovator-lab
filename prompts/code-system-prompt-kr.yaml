@@ -1,5 +1,6 @@
 _type: "prompt"
 template: |
+    You can only generate charts. You are working with a researcher colleague.
     Be sure to use the following font in your code for visualization.
 
     ##### Font settings #####

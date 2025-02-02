@@ -1,56 +1,55 @@
 # RAG Innovoator Lab
+
 The purpose of this repository includes RAG best practices, along with tools and techniques for innovating current architecture.
 
-> This repo has been populated by an initial template to help get you started. Please
-> make sure to update the content to build a great experience for community-building.
+This hands-on lab is suitable for the following purposes:
 
-## Program Ideation Backlog (Temp)
+1. 1-day workshop (4-7 hours depending on customer)
+2. Hackathon starter code
+3. Reference guide for RAG/Multi-Agent design patterns
 
-### 0_basic_rag
-### 1_agentic-design-patterns
-- 01_Reflection: Self-RAG, Corrective-RAG, Adaptive RAG
-- 02_Plan-and-Execute
-- 03_Multi-Agent: Supervisor, Hierarchy, Collaboration
-### 2_eval-design-patterns
-- 01_retrieval-accuracy-check-web-search
-- 02_relevance-check-query-rewrite
-- 03_groundedness-check-human-in-the-loop
-- 04_simulation-evaluation-layer-in-RAG
+[**Requirements**](#requirements) | [**Get started**](#get-started) 
 
-### 3_optimization-design-patterns
-- 01_Caching
-- 02_Long-Context-Compression
-- 03_Choose-Your-SLMs-LLMs
 ----------------------------------------------------------------------------------------
-
-### Backlogs
-
-#### 0_basic_rag
-#### 1_retrieval (멀티벡터, hyde, parent 같은 pre-retrieval, 리랭크 같은 post-retrieval)
-#### 2_tools (기본 tool 사용법, agentic rag같은 기본 개념)
-#### 3_domain-specific-rag (RAFT)
-#### 4_adaptive_rag (맨 앞단에서 라우팅을 통해 질문에 따라 적응적으로 대응)
-#### 5_reflection (중간중간에 계속 evaluation/groundless 체크를 통해 답변 검증)
-#### 6_multi-agent-supervisor (감독자 에이전트가 여러 에이전트 관리)
-#### 7_multi-agent-collabration (각 페르소나별 에이전트가 역할을 수행..)
-#### 8_simulation-and-evaluation (배포 전에 AI봇이 사용자로 빙의해서 테스트하고 자체 평가)
-
-## 04_Use-Cases
-#### 반드시 코드 스니펫일 필요는 없음. 전반적인 유스케이스(콜센터 상담, 호텔/비행기 예약)에 집중
-
 
 ## List of workshops (TBD)
 
 Provided below is a list of currently published modules:
 
-| Title  | Link | Description      |
-|-------|-----|-----------|
-| Basic RAG | [creating RAG application with Azure AI Search](https://github.com/Azure/rag-innovator-lab)  | Set up a RAG based Gen AI application with Azure AI Search  |
-| Basic RAG | [creating RAG application with Azure AI Search](https://github.com/Azure/rag-innovator-lab)  | Set up a RAG based Gen AI application with Azure AI Search  |
-| Basic RAG | [creating RAG application with Azure AI Search](https://github.com/Azure/rag-innovator-lab)  | Set up a RAG based Gen AI application with Azure AI Search  |
-| Basic RAG | [creating RAG application with Azure AI Search](https://github.com/Azure/rag-innovator-lab)  | Set up a RAG based Gen AI application with Azure AI Search  |
-| Basic RAG | [creating RAG application with Azure AI Search](https://github.com/Azure/rag-innovator-lab)  | Set up a RAG based Gen AI application with Azure AI Search  |
+| Title  | Description and Link  |
+|-------|-----|
+| Lab 0. Basic RAG | [Create RAG application with Azure AI Search](0_basic_rag)  |
+| Lab 0. Basic Agent | [Basic Concepts of Agent and Agent toolkits (AutoGen and LangGraph)](0_basic_rag) |
+| Lab 1. Agentic Design Pattern | [Practice representative patterns of Agentic RAG](1_agentic-design-ptn) |
+| Lab 2. Evaluation Design Pattern | [Practice the Evaluation-Driven RAG patterns](2_eval-design-ptn)  |
+| Lab 3. Optimization Design Pattern | In Developmet  |
 
+
+## Requirements
+Before starting, you should meet the following requirements:
+
+- [Access to Azure OpenAI Service](https://go.microsoft.com/fwlink/?linkid=2222006)
+- [Azure AI Foundry getting started](https://int.ai.azure.com/explore/gettingstarted): Create a project
+
+- ***[Evaluation driven LLMOps]*** Need to grant ***Storage File Data Privileged Contributor, Storage Blob Data Contributor*** at the storage of AI Foundry role to user, group, service principle and managed Identity which you are trying to access the data.
+
+**Please do not forget to modify the `.env` file to match your account. Rename `sample.env` to `.env` or copy and use it**
+
+## Get started
+
+### If you are using your own local 
+```shell
+git clone https://github.com/Azure/rag-innovator-lab.git
+cd rag-innovator-lab 
+pip install -r requirements.txt
+```
+
+### If you are using Azure ML Compute Instance
+```shell
+git clone https://github.com/Azure/raginnovator-lab.git
+cd rag-innovator-lab && conda activate azureml_py310_sdkv2
+pip install -r requirements.txt
+```
 
 ## Contributing
 
