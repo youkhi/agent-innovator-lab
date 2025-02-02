@@ -46,7 +46,7 @@ pip install -r requirements.txt
 
 ### If you are using Azure ML Compute Instance
 ```shell
-git clone https://github.com/Azure/raginnovator-lab.git
+git clone https://github.com/Azure/rag-innovator-lab.git
 cd rag-innovator-lab && conda activate azureml_py310_sdkv2
 pip install -r requirements.txt
 ```
