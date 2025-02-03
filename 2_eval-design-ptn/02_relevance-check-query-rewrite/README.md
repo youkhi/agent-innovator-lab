@@ -1,1 +1,0 @@
-# Relevance Check Query Rewrite
