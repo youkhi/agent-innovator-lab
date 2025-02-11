@@ -41,15 +41,15 @@ Before starting, you should meet the following requirements:
 
 ### If you are using your own local 
 ```shell
-git clone https://github.com/Azure/rag-innovator-lab.git
-cd rag-innovator-lab 
+git clone https://github.com/Azure/agent-innovator-lab.git
+cd agent-innovator-lab 
 pip install -r requirements.txt
 ```
 
 ### If you are using Azure ML Compute Instance
 ```shell
-git clone https://github.com/Azure/rag-innovator-lab.git
-cd rag-innovator-lab && conda activate azureml_py310_sdkv2
+git clone https://github.com/Azure/agent-innovator-lab.git
+cd agent-innovator-lab && conda activate azureml_py310_sdkv2
 pip install -r requirements.txt
 ```
 
