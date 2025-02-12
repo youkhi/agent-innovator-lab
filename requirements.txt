@@ -8,9 +8,9 @@ semantic-kernel==1.18.2
 asyncio==3.4.3
 azure-ai-projects==1.0.0b5
 azure-ai-evaluation==1.2.0
-autogen-core==0.4.2
-autogen-agentchat==0.4.2
-autogen-ext==0.4.2
+autogen-core==0.4.6
+autogen-agentchat==0.4.6
+autogen-ext==0.4.6
 langchain-openai==0.3.4
 azure-genai-utils==0.0.2.20
 promptflow-devkit==1.17.2
@@ -18,4 +18,5 @@ azure-ai-ml==1.24.0
 # ModuleNotFoundError: No module named 'bs4'
 bs4==0.0.2
 azure-ai-inference==1.0.0b8
-azure-monitor-opentelemetry==1.6.3
+azure-monitor-opentelemetry==1.6.4
+autogenstudio==0.4.1.1
