@@ -1,156 +1,573 @@
 {
-    "id": "gallery_default",
-    "name": "Basic Agent Gallery",
-    "metadata": {
-      "author": "Hyo Choi",
-      "created_at": "2024-12-12T00:00:00Z",
-      "updated_at": "2024-12-12T00:00:00Z",
-      "version": "1.0.0",
-      "description": "A default gallery containing basic components and human-in-loop conversations",
-      "tags": [
-        "basic",
-        "assistant"
-      ],
-      "license": "MIT",
-      "category": "conversation"
-    },
-    "items": {
-      "teams": [
-        
-      ],
-      "components": {
-        "agents": [
-          {
-            "component_type": "agent",
-            "description": "An assistant agent that can help users complete tasks",
-            "name": "single_tool_use_agent",
-            "agent_type": "AssistantAgent",
-            "system_message": "You are a tool-use agent. Your only tools are calculator, fetch_website, and weather_forecast. Use them to find information. You may make only one tool call at a time. Once you have the results, do not perform any calculations or modifications based on them. If the user’s query is not applicable to your tools, respond with a gentle comment with 'TERMINATE' and do not provide an answer. After done your task, reply with 'TERMINATE'.",
+  "id": "gallery_default",
+  "name": "Agent Inno Lab Gallery",
+  "metadata": {
+    "author": "Hyo Choi",
+    "created_at": "2024-12-12T00:00:00Z",
+    "updated_at": "2024-12-12T00:00:00Z",
+    "version": "1.0.0",
+    "description": "Azure Innovator Lab gallery containing basic components and human-in-loop conversations",
+    "tags": [
+      "basic",
+      "assistant"
+    ],
+    "license": "MIT",
+    "category": "conversation"
+  },
+  "items": {
+    "teams": [
+      {
+        "provider": "autogen_agentchat.teams.RoundRobinGroupChat",
+        "component_type": "team",
+        "version": 1,
+        "component_version": 1,
+        "description": "A single AssistantAgent (with a calculator tool) in a RoundRobinGroupChat team. ",
+        "label": "SingleAgent Team",
+        "config": {
+          "participants": [
+            {
+              "provider": "autogen_agentchat.agents.AssistantAgent",
+              "component_type": "agent",
+              "version": 1,
+              "component_version": 1,
+              "description": "An agent that provides assistance with tool use.",
+              "label": "AssistantAgent",
+              "config": {
+                "name": "assistant_agent",
+                "model_client": {
+                  "provider": "autogen_ext.models.openai.AzureOpenAIChatCompletionClient",
+                  "component_type": "model",
+                  "version": 1,
+                  "component_version": 1,
+                  "description": "Chat completion client for OpenAI hosted models.",
+                  "label": "AzureOpenAIChatCompletionClient",
+                  "config": {
+                    "model": "gpt-4o-mini",
+                    "api_key": "sk-...",
+                    "azure_endpoint": "https://{your-custom-endpoint}.openai.azure.com/",
+                    "azure_deployment": "{your-azure-deployment}",
+                    "api_version": "2024-06-01"
+                  }
+                },
+                "tools": [
+                  {
+                    "provider": "autogen_core.tools.FunctionTool",
+                    "component_type": "tool",
+                    "version": 1,
+                    "component_version": 1,
+                    "description": "An agent that provides assistance with ability to use tools.",
+                    "label": "FunctionTool",
+                    "config": {
+                      "source_code": "def calculator(a: float, b: float, operator: str) -> str:\n    try:\n        if operator == '+':\n            return str(a + b)\n        elif operator == '-':\n            return str(a - b)\n        elif operator == '*':\n            return str(a * b)\n        elif operator == '/':\n            if b == 0:\n                return 'Error: Division by zero'\n            return str(a / b)\n        else:\n            return 'Error: Invalid operator. Please use +, -, *, or /'\n    except Exception as e:\n        return f'Error: {str(e)}'",
+                      "name": "calculator",
+                      "description": "A simple calculator that performs basic arithmetic operations",
+                      "global_imports": [],
+                      "has_cancellation_support": false
+                    }
+                  },
+                  {
+                    "provider": "autogen_core.tools.FunctionTool",
+                    "component_type": "tool",
+                    "version": 1,
+                    "component_version": 1,
+                    "description": "A tool that fetches the content of a webpage and converts it to markdown. Requires the requests and beautifulsoup4 library to function.",
+                    "label": "FunctionTool",
+                    "config": {
+                      "source_code": "async def fetch_webpage(\n    url: str, include_images: bool = True, max_length: Optional[int] = None, headers: Optional[Dict[str, str]] = None\n) -> str:\n    \"\"\"Fetch a webpage and convert it to markdown format.\n\n    Args:\n        url: The URL of the webpage to fetch\n        include_images: Whether to include image references in the markdown\n        max_length: Maximum length of the output markdown (if None, no limit)\n        headers: Optional HTTP headers for the request\n\n    Returns:\n        str: Markdown version of the webpage content\n\n    Raises:\n        ValueError: If the URL is invalid or the page can't be fetched\n    \"\"\"\n    # Use default headers if none provided\n    if headers is None:\n        headers = {\"User-Agent\": \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36\"}\n\n    try:\n        # Fetch the webpage\n        async with httpx.AsyncClient() as client:\n            response = await client.get(url, headers=headers, timeout=10)\n            response.raise_for_status()\n\n            # Parse HTML\n            soup = BeautifulSoup(response.text, \"html.parser\")\n\n            # Remove script and style elements\n            for script in soup([\"script\", \"style\"]):\n                script.decompose()\n\n            # Convert relative URLs to absolute\n            for tag in soup.find_all([\"a\", \"img\"]):\n                if tag.get(\"href\"):\n                    tag[\"href\"] = urljoin(url, tag[\"href\"])\n                if tag.get(\"src\"):\n                    tag[\"src\"] = urljoin(url, tag[\"src\"])\n\n            # Configure HTML to Markdown converter\n            h2t = html2text.HTML2Text()\n            h2t.body_width = 0  # No line wrapping\n            h2t.ignore_images = not include_images\n            h2t.ignore_emphasis = False\n            h2t.ignore_links = False\n            h2t.ignore_tables = False\n\n            # Convert to markdown\n            markdown = h2t.handle(str(soup))\n\n            # Trim if max_length is specified\n            if max_length and len(markdown) > max_length:\n                markdown = markdown[:max_length] + \"\\n...(truncated)\"\n\n            return markdown.strip()\n\n    except httpx.RequestError as e:\n        raise ValueError(f\"Failed to fetch webpage: {str(e)}\") from e\n    except Exception as e:\n        raise ValueError(f\"Error processing webpage: {str(e)}\") from e\n",
+                      "name": "fetch_webpage",
+                      "description": "Fetch a webpage and convert it to markdown format, with options for including images and limiting length",
+                      "global_imports": [
+                        "os",
+                        "html2text",
+                        {
+                          "module": "typing",
+                          "imports": ["Optional", "Dict"]
+                        },
+                        "httpx",
+                        {
+                          "module": "bs4",
+                          "imports": ["BeautifulSoup"]
+                        },
+                        {
+                          "module": "html2text",
+                          "imports": ["HTML2Text"]
+                        },
+                        {
+                          "module": "urllib.parse",
+                          "imports": ["urljoin"]
+                        }
+                      ],
+                      "has_cancellation_support": false
+                    }
+                  },
+                  {
+                    "provider": "autogen_core.tools.FunctionTool",
+                    "component_type": "tool",
+                    "version": 1,
+                    "component_version": 1,
+                    "description": "Get the weather forecast for a specific location",
+                    "label": "FunctionTool",
+                    "config": {
+                      "source_code": "def get_weather(location: str) -> str:\n return f'The weather in {location} is 23 degrees celsius and Sunny.'",
+                      "name": "weather_forecast",
+                      "description": "Get the weather forecast for a specific location",
+                      "global_imports": [],
+                      "has_cancellation_support": false
+                    }
+                  }
+                ],
+                "handoffs": [],
+                "model_context": {
+                  "provider": "autogen_core.model_context.UnboundedChatCompletionContext",
+                  "component_type": "chat_completion_context",
+                  "version": 1,
+                  "component_version": 1,
+                  "description": "An unbounded chat completion context that keeps a view of the all the messages.",
+                  "label": "UnboundedChatCompletionContext",
+                  "config": {}
+                },
+                "description": "An agent that provides assistance with ability to use tools.",
+                "system_message": "You are a tool-use agent. Your only tools are calculator, fetch_website, and weather_forecast. Use them to find information. You may make only one tool call at a time. Once you have the results, do not perform any calculations or modifications based on them. If the user query is not applicable to your tools, respond with a gentle comment with 'TERMINATE' and do not provide an answer. After done your task, reply with 'TERMINATE'.",
+                "model_client_stream": false,
+                "reflect_on_tool_use": false,
+                "tool_call_summary_format": "{result}"
+              }
+            }
+          ],
+          "termination_condition": {
+            "provider": "autogen_agentchat.base.OrTerminationCondition",
+            "component_type": "termination",
+            "version": 1,
+            "component_version": 1,
+            "label": "OrTerminationCondition",
+            "config": {
+              "conditions": [
+                {
+                  "provider": "autogen_agentchat.conditions.TextMentionTermination",
+                  "component_type": "termination",
+                  "version": 1,
+                  "component_version": 1,
+                  "description": "Terminate the conversation if a specific text is mentioned.",
+                  "label": "TextMentionTermination",
+                  "config": {
+                    "text": "TERMINATE"
+                  }
+                },
+                {
+                  "provider": "autogen_agentchat.conditions.MaxMessageTermination",
+                  "component_type": "termination",
+                  "version": 1,
+                  "component_version": 1,
+                  "description": "Terminate the conversation after a maximum number of messages have been exchanged.",
+                  "label": "MaxMessageTermination",
+                  "config": {
+                    "max_messages": 10
+                  }
+                }
+              ]
+            }
+          }
+        }
+      },
+      {
+        "provider": "autogen_agentchat.teams.RoundRobinGroupChat",
+        "component_type": "team",
+        "version": 1,
+        "component_version": 1,
+        "description": "Multi-Agent with Reviewer & Writer AssistantAgent in a RoundRobinGroupChat team. ",
+        "label": "MultiAgent Team",
+        "config": {
+          "participants": [
+            {
+              "provider": "autogen_agentchat.agents.AssistantAgent",
+              "component_type": "agent",
+              "version": 1,
+              "component_version": 1,
+              "description": "An agent that provides assistance with tool use.",
+              "label": "ReviewerAgent",
+              "config": {
+                "name": "reviewer_agent",
+                "model_client": {
+                  "provider": "autogen_ext.models.openai.AzureOpenAIChatCompletionClient",
+                  "component_type": "model",
+                  "version": 1,
+                  "component_version": 1,
+                  "description": "Chat completion client for OpenAI hosted models.",
+                  "label": "AzureOpenAIChatCompletionClient",
+                  "config": {
+                    "model": "gpt-4o-mini",
+                    "api_key": "sk-...",
+                    "azure_endpoint": "https://{your-custom-endpoint}.openai.azure.com/",
+                    "azure_deployment": "{your-azure-deployment}",
+                    "api_version": "2024-06-01"
+                  }
+                },
+                "tools": [
+                ],
+                "handoffs": [],
+                "model_context": {
+                  "provider": "autogen_core.model_context.UnboundedChatCompletionContext",
+                  "component_type": "chat_completion_context",
+                  "version": 1,
+                  "component_version": 1,
+                  "description": "An unbounded chat completion context that keeps a view of the all the messages.",
+                  "label": "UnboundedChatCompletionContext",
+                  "config": {}
+                },
+                "description": "You are a reviewer agent. Evaluate the content provided by the writer agent and offer constructive feedback for improvement.",
+                "system_message": "You are a reviewer agent. Evaluate the content provided by the writer agent, offering constructive feedback for improvement. Score the content from 1 to 5 based on its quality and alignment with the user request. If the score is 5, respond with 'TERMINATE'. Do not use bold style.",
+                "model_client_stream": false,
+                "reflect_on_tool_use": false,
+                "tool_call_summary_format": "{result}"
+              }
+            },
+            {
+              "provider": "autogen_agentchat.agents.AssistantAgent",
+              "component_type": "agent",
+              "version": 1,
+              "component_version": 1,
+              "description": "An agent that provides assistance with tool use.",
+              "label": "WriterAgent",
+              "config": {
+                "name": "writer_agent",
+                "model_client": {
+                  "provider": "autogen_ext.models.openai.AzureOpenAIChatCompletionClient",
+                  "component_type": "model",
+                  "version": 1,
+                  "component_version": 1,
+                  "description": "Chat completion client for OpenAI hosted models.",
+                  "label": "AzureOpenAIChatCompletionClient",
+                  "config": {
+                    "model": "gpt-4o-mini",
+                    "api_key": "sk-...",
+                    "azure_endpoint": "https://{your-custom-endpoint}.openai.azure.com/",
+                    "azure_deployment": "{your-azure-deployment}",
+                    "api_version": "2024-06-01"
+                  }
+                },
+                "tools": [
+                ],
+                "handoffs": [],
+                "model_context": {
+                  "provider": "autogen_core.model_context.UnboundedChatCompletionContext",
+                  "component_type": "chat_completion_context",
+                  "version": 1,
+                  "component_version": 1,
+                  "description": "An unbounded chat completion context that keeps a view of the all the messages.",
+                  "label": "UnboundedChatCompletionContext",
+                  "config": {}
+                },
+                "description": "You are a writer agent. Generate content based on user requests.",
+                "system_message": "You are a writer agent responsible for generating content based on user requests. Incorporate feedback from reviewer agents to iteratively improve the content until it meets the highest quality standards.",
+                "model_client_stream": false,
+                "reflect_on_tool_use": false,
+                "tool_call_summary_format": "{result}"
+              }
+            }
+          ],
+          "termination_condition": {
+            "provider": "autogen_agentchat.base.OrTerminationCondition",
+            "component_type": "termination",
+            "version": 1,
+            "component_version": 1,
+            "label": "OrTerminationCondition",
+            "config": {
+              "conditions": [
+                {
+                  "provider": "autogen_agentchat.conditions.TextMentionTermination",
+                  "component_type": "termination",
+                  "version": 1,
+                  "component_version": 1,
+                  "description": "Terminate the conversation if a specific text is mentioned.",
+                  "label": "TextMentionTermination",
+                  "config": {
+                    "text": "TERMINATE"
+                  }
+                },
+                {
+                  "provider": "autogen_agentchat.conditions.MaxMessageTermination",
+                  "component_type": "termination",
+                  "version": 1,
+                  "component_version": 1,
+                  "description": "Terminate the conversation after a maximum number of messages have been exchanged.",
+                  "label": "MaxMessageTermination",
+                  "config": {
+                    "max_messages": 10
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    ],
+    "components": {
+      "agents": [
+        {
+          "provider": "autogen_agentchat.agents.AssistantAgent",
+          "component_type": "agent",
+          "version": 1,
+          "component_version": 1,
+          "description": "An agent that provides assistance with tool use.",
+          "label": "AssistantAgent",
+          "config": {
+            "name": "assistant_agent",
             "model_client": {
-              "model": "gpt-4o-mini",
-              "model_type": "AzureOpenAIChatCompletionClient",
-              "azure_deployment": "gpt-4o",
-              "api_version": "2025-01-01-preview",
-              "azure_endpoint": "https://your-endpoint.openai.azure.com/",
-              "api_key": "your-api-key",
-              "component_type": "model"
+              "provider": "autogen_ext.models.openai.AzureOpenAIChatCompletionClient",
+              "component_type": "model",
+              "version": 1,
+              "component_version": 1,
+              "description": "Chat completion client for OpenAI hosted models.",
+              "label": "AzureOpenAIChatCompletionClient",
+              "config": {
+                "model": "gpt-4o-mini",
+                "api_key": "sk-...",
+                "azure_endpoint": "https://{your-custom-endpoint}.openai.azure.com/",
+                "azure_deployment": "{your-azure-deployment}",
+                "api_version": "2024-06-01"
+              }
             },
             "tools": [
               {
+                "provider": "autogen_core.tools.FunctionTool",
                 "component_type": "tool",
-                "name": "calculator",
-                "description": "A simple calculator that performs basic arithmetic operations between two float numbers",
-                "content": "def calculator(a: float, b: float, operator: str) -> str:\n    try:\n        if operator == '+':\n            return str(a + b)\n        elif operator == '-':\n            return str(a - b)\n        elif operator == '*':\n            return str(a * b)\n        elif operator == '/':\n            if b == 0:\n                return 'Error: Division by zero'\n            return str(a / b)\n        else:\n            return 'Error: Invalid operator. Please use +, -, *, or /'\n    except Exception as e:\n        return f'Error: {str(e)}'",
-                "tool_type": "PythonFunction"
+                "version": 1,
+                "component_version": 1,
+                "description": "An agent that provides assistance with ability to use tools.",
+                "label": "FunctionTool",
+                "config": {
+                  "source_code": "def calculator(a: float, b: float, operator: str) -> str:\n    try:\n        if operator == '+':\n            return str(a + b)\n        elif operator == '-':\n            return str(a - b)\n        elif operator == '*':\n            return str(a * b)\n        elif operator == '/':\n            if b == 0:\n                return 'Error: Division by zero'\n            return str(a / b)\n        else:\n            return 'Error: Invalid operator. Please use +, -, *, or /'\n    except Exception as e:\n        return f'Error: {str(e)}'",
+                  "name": "calculator",
+                  "description": "A simple calculator that performs basic arithmetic operations",
+                  "global_imports": [],
+                  "has_cancellation_support": false
+                }
               },
               {
+                "provider": "autogen_core.tools.FunctionTool",
                 "component_type": "tool",
-                "name": "fetch_website",
-                "description": "Fetch and return the content of a website URL",
-                "content": "def fetch_website(url: str) -> str:\n    try:\n        import requests\n        from urllib.parse import urlparse\n        \n        # Validate URL format\n        parsed = urlparse(url)\n        if not parsed.scheme or not parsed.netloc:\n            return \"Error: Invalid URL format. Please include http:// or https://\"\n            \n        # Add scheme if not present\n        if not url.startswith(('http://', 'https://')): \n            url = 'https://' + url\n            \n        # Set headers to mimic a browser request\n        headers = {\n            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'\n        }\n        \n        # Make the request with a timeout\n        response = requests.get(url, headers=headers, timeout=10)\n        response.raise_for_status()\n        \n        # Return the text content\n        return response.text\n        \n    except requests.exceptions.Timeout:\n        return \"Error: Request timed out\"\n    except requests.exceptions.ConnectionError:\n        return \"Error: Failed to connect to the website\"\n    except requests.exceptions.HTTPError as e:\n        return f\"Error: HTTP {e.response.status_code} - {e.response.reason}\"\n    except Exception as e:\n        return f\"Error: {str(e)}\"",
-                "tool_type": "PythonFunction"
+                "version": 1,
+                "component_version": 1,
+                "description": "A tool that fetches the content of a webpage and converts it to markdown. Requires the requests and beautifulsoup4 library to function.",
+                "label": "FunctionTool",
+                "config": {
+                  "source_code": "async def fetch_webpage(\n    url: str, include_images: bool = True, max_length: Optional[int] = None, headers: Optional[Dict[str, str]] = None\n) -> str:\n    \"\"\"Fetch a webpage and convert it to markdown format.\n\n    Args:\n        url: The URL of the webpage to fetch\n        include_images: Whether to include image references in the markdown\n        max_length: Maximum length of the output markdown (if None, no limit)\n        headers: Optional HTTP headers for the request\n\n    Returns:\n        str: Markdown version of the webpage content\n\n    Raises:\n        ValueError: If the URL is invalid or the page can't be fetched\n    \"\"\"\n    # Use default headers if none provided\n    if headers is None:\n        headers = {\"User-Agent\": \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36\"}\n\n    try:\n        # Fetch the webpage\n        async with httpx.AsyncClient() as client:\n            response = await client.get(url, headers=headers, timeout=10)\n            response.raise_for_status()\n\n            # Parse HTML\n            soup = BeautifulSoup(response.text, \"html.parser\")\n\n            # Remove script and style elements\n            for script in soup([\"script\", \"style\"]):\n                script.decompose()\n\n            # Convert relative URLs to absolute\n            for tag in soup.find_all([\"a\", \"img\"]):\n                if tag.get(\"href\"):\n                    tag[\"href\"] = urljoin(url, tag[\"href\"])\n                if tag.get(\"src\"):\n                    tag[\"src\"] = urljoin(url, tag[\"src\"])\n\n            # Configure HTML to Markdown converter\n            h2t = html2text.HTML2Text()\n            h2t.body_width = 0  # No line wrapping\n            h2t.ignore_images = not include_images\n            h2t.ignore_emphasis = False\n            h2t.ignore_links = False\n            h2t.ignore_tables = False\n\n            # Convert to markdown\n            markdown = h2t.handle(str(soup))\n\n            # Trim if max_length is specified\n            if max_length and len(markdown) > max_length:\n                markdown = markdown[:max_length] + \"\\n...(truncated)\"\n\n            return markdown.strip()\n\n    except httpx.RequestError as e:\n        raise ValueError(f\"Failed to fetch webpage: {str(e)}\") from e\n    except Exception as e:\n        raise ValueError(f\"Error processing webpage: {str(e)}\") from e\n",
+                  "name": "fetch_webpage",
+                  "description": "Fetch a webpage and convert it to markdown format, with options for including images and limiting length",
+                  "global_imports": [
+                    "os",
+                    "html2text",
+                    {
+                      "module": "typing",
+                      "imports": ["Optional", "Dict"]
+                    },
+                    "httpx",
+                    {
+                      "module": "bs4",
+                      "imports": ["BeautifulSoup"]
+                    },
+                    {
+                      "module": "html2text",
+                      "imports": ["HTML2Text"]
+                    },
+                    {
+                      "module": "urllib.parse",
+                      "imports": ["urljoin"]
+                    }
+                  ],
+                  "has_cancellation_support": false
+                }
               },
               {
+                "provider": "autogen_core.tools.FunctionTool",
                 "component_type": "tool",
-                "name": "weather_forecast",
+                "version": 1,
+                "component_version": 1,
                 "description": "Get the weather forecast for a specific location",
-                "content": "def get_weather(location: str) -> str:\n return f'The weather in {location} is 25 degrees celsius and Sunny.'",
-                "tool_type": "PythonFunction"
+                "label": "FunctionTool",
+                "config": {
+                  "source_code": "def get_weather(location: str) -> str:\n return f'The weather in {location} is 23 degrees celsius and Sunny.'",
+                  "name": "weather_forecast",
+                  "description": "Get the weather forecast for a specific location",
+                  "global_imports": [],
+                  "has_cancellation_support": false
+                }
               }
-            ]
-          },
-          {
-            "component_type": "agent",
-            "description": "A user agent that is driven by a human user",
-            "name": "user_agent",
-            "agent_type": "UserProxyAgent",
-            "tools": []
-          },
-          {
-            "component_type": "agent",
-            "description": "You are a writer agent. Generate content based on user requests.",
-            "system_message": "You are a writer agent responsible for generating content based on user requests. Incorporate feedback from reviewer agents to iteratively improve the content until it meets the highest quality standards.",
-            "name": "writer_agent",
-            "agent_type": "AssistantAgent",
-            "tools": []
-          },
-          {
-            "component_type": "agent",
-            "description": "You are a reviewer agent. Evaluate the content provided by the writer agent and offer constructive feedback for improvement.",
-            "system_message": "You are a reviewer agent. Evaluate the content provided by the writer agent, offering constructive feedback for improvement. Score the content from 1 to 5 based on its quality and alignment with the user request. If the score is 5, respond with 'TERMINATE'. Do not use bold style.",
-            "name": "reviewer_agent",
-            "agent_type": "AssistantAgent",
-            "tools": []
+            ],
+            "handoffs": [],
+            "model_context": {
+              "provider": "autogen_core.model_context.UnboundedChatCompletionContext",
+              "component_type": "chat_completion_context",
+              "version": 1,
+              "component_version": 1,
+              "description": "An unbounded chat completion context that keeps a view of the all the messages.",
+              "label": "UnboundedChatCompletionContext",
+              "config": {}
+            },
+            "description": "An agent that provides assistance with ability to use tools.",
+            "system_message": "You are a tool-use agent. Your only tools are calculator, fetch_website, and weather_forecast. Use them to find information. You may make only one tool call at a time. Once you have the results, do not perform any calculations or modifications based on them. If the user query is not applicable to your tools, respond with a gentle comment with 'TERMINATE' and do not provide an answer. After done your task, reply with 'TERMINATE'.",
+            "model_client_stream": false,
+            "reflect_on_tool_use": false,
+            "tool_call_summary_format": "{result}"
           }
-        ],
-        "models": [
-          {
-            "model": "gpt-4o",
-            "model_type": "AzureOpenAIChatCompletionClient",
-            "azure_deployment": "gpt-4o",
-            "api_version": "2025-01-01-preview",
-            "azure_endpoint": "https://your-endpoint.openai.azure.com/",
-            "api_key": "your-api-key",
-            "component_type": "model"
+        },
+        {
+          "provider": "autogen_agentchat.agents.UserProxyAgent",
+          "component_type": "agent",
+          "version": 1,
+          "component_version": 1,
+          "description": "An agent that can represent a human user through an input function.",
+          "label": "UserProxyAgent",
+          "config": {
+            "name": "user_proxy",
+            "description": "a human user that should be consulted only when the assistant_agent is unable to verify the information provided by the websurfer_agent"
           }
-        ],
-        "tools": [
-          {
-            "component_type": "tool",
+        }
+      ],
+      "models": [
+        {
+          "provider": "autogen_ext.models.openai.AzureOpenAIChatCompletionClient",
+          "component_type": "model",
+          "version": 1,
+          "component_version": 1,
+          "description": "GPT-4o Mini Azure OpenAI model client.",
+          "label": "AzureOpenAI GPT-4o-mini",
+          "config": {
+            "model": "gpt-4o-mini",
+            "api_key": "sk-...",
+            "azure_endpoint": "https://{your-custom-endpoint}.openai.azure.com/",
+            "azure_deployment": "{your-azure-deployment}",
+            "api_version": "2024-06-01"
+          }
+        }
+      ],
+      "tools": [
+        {
+          "provider": "autogen_core.tools.FunctionTool",
+          "component_type": "tool",
+          "version": 1,
+          "component_version": 1,
+          "description": "Create custom tools by wrapping standard Python functions.",
+          "label": "FunctionTool",
+          "config": {
+            "source_code": "def calculator(a: float, b: float, operator: str) -> str:\n    try:\n        if operator == \"+\":\n            return str(a + b)\n        elif operator == \"-\":\n            return str(a - b)\n        elif operator == \"*\":\n            return str(a * b)\n        elif operator == \"/\":\n            if b == 0:\n                return \"Error: Division by zero\"\n            return str(a / b)\n        else:\n            return \"Error: Invalid operator. Please use +, -, *, or /\"\n    except Exception as e:\n        return f\"Error: {str(e)}\"\n",
             "name": "calculator",
-            "description": "A simple calculator that performs basic arithmetic operations between two numbers",
-            "content": "def calculator(a: float, b: float, operator: str) -> str:\n    try:\n        if operator == '+':\n            return str(a + b)\n        elif operator == '-':\n            return str(a - b)\n        elif operator == '*':\n            return str(a * b)\n        elif operator == '/':\n            if b == 0:\n                return 'Error: Division by zero'\n            return str(a / b)\n        else:\n            return 'Error: Invalid operator. Please use +, -, *, or /'\n    except Exception as e:\n        return f'Error: {str(e)}'",
-            "tool_type": "PythonFunction"
-          },
-          {
-            "component_type": "tool",
-            "name": "fetch_website",
-            "description": "Fetch and return the content of a website URL",
-            "content": "def fetch_website(url: str) -> str:\n    try:\n        import requests\n        from urllib.parse import urlparse\n        \n        # Validate URL format\n        parsed = urlparse(url)\n        if not parsed.scheme or not parsed.netloc:\n            return \"Error: Invalid URL format. Please include http:// or https://\"\n            \n        # Add scheme if not present\n        if not url.startswith(('http://', 'https://')): \n            url = 'https://' + url\n            \n        # Set headers to mimic a browser request\n        headers = {\n            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'\n        }\n        \n        # Make the request with a timeout\n        response = requests.get(url, headers=headers, timeout=10)\n        response.raise_for_status()\n        \n        # Return the text content\n        return response.text\n        \n    except requests.exceptions.Timeout:\n        return \"Error: Request timed out\"\n    except requests.exceptions.ConnectionError:\n        return \"Error: Failed to connect to the website\"\n    except requests.exceptions.HTTPError as e:\n        return f\"Error: HTTP {e.response.status_code} - {e.response.reason}\"\n    except Exception as e:\n        return f\"Error: {str(e)}\"",
-            "tool_type": "PythonFunction"
-          },
-          {
-            "component_type": "tool",
+            "description": "A simple calculator that performs basic arithmetic operations",
+            "global_imports": [],
+            "has_cancellation_support": false
+          }
+        },
+        {
+          "provider": "autogen_core.tools.FunctionTool",
+          "component_type": "tool",
+          "version": 1,
+          "component_version": 1,
+          "description": "A tool that fetches the content of a webpage and converts it to markdown. Requires the requests and beautifulsoup4 library to function.",
+          "label": "FunctionTool",
+          "config": {
+            "source_code": "async def fetch_webpage(\n    url: str, include_images: bool = True, max_length: Optional[int] = None, headers: Optional[Dict[str, str]] = None\n) -> str:\n    \"\"\"Fetch a webpage and convert it to markdown format.\n\n    Args:\n        url: The URL of the webpage to fetch\n        include_images: Whether to include image references in the markdown\n        max_length: Maximum length of the output markdown (if None, no limit)\n        headers: Optional HTTP headers for the request\n\n    Returns:\n        str: Markdown version of the webpage content\n\n    Raises:\n        ValueError: If the URL is invalid or the page can't be fetched\n    \"\"\"\n    # Use default headers if none provided\n    if headers is None:\n        headers = {\"User-Agent\": \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36\"}\n\n    try:\n        # Fetch the webpage\n        async with httpx.AsyncClient() as client:\n            response = await client.get(url, headers=headers, timeout=10)\n            response.raise_for_status()\n\n            # Parse HTML\n            soup = BeautifulSoup(response.text, \"html.parser\")\n\n            # Remove script and style elements\n            for script in soup([\"script\", \"style\"]):\n                script.decompose()\n\n            # Convert relative URLs to absolute\n            for tag in soup.find_all([\"a\", \"img\"]):\n                if tag.get(\"href\"):\n                    tag[\"href\"] = urljoin(url, tag[\"href\"])\n                if tag.get(\"src\"):\n                    tag[\"src\"] = urljoin(url, tag[\"src\"])\n\n            # Configure HTML to Markdown converter\n            h2t = html2text.HTML2Text()\n            h2t.body_width = 0  # No line wrapping\n            h2t.ignore_images = not include_images\n            h2t.ignore_emphasis = False\n            h2t.ignore_links = False\n            h2t.ignore_tables = False\n\n            # Convert to markdown\n            markdown = h2t.handle(str(soup))\n\n            # Trim if max_length is specified\n            if max_length and len(markdown) > max_length:\n                markdown = markdown[:max_length] + \"\\n...(truncated)\"\n\n            return markdown.strip()\n\n    except httpx.RequestError as e:\n        raise ValueError(f\"Failed to fetch webpage: {str(e)}\") from e\n    except Exception as e:\n        raise ValueError(f\"Error processing webpage: {str(e)}\") from e\n",
+            "name": "fetch_webpage",
+            "description": "Fetch a webpage and convert it to markdown format, with options for including images and limiting length",
+            "global_imports": [
+              "os",
+              "html2text",
+              {
+                "module": "typing",
+                "imports": ["Optional", "Dict"]
+              },
+              "httpx",
+              {
+                "module": "bs4",
+                "imports": ["BeautifulSoup"]
+              },
+              {
+                "module": "html2text",
+                "imports": ["HTML2Text"]
+              },
+              {
+                "module": "urllib.parse",
+                "imports": ["urljoin"]
+              }
+            ],
+            "has_cancellation_support": false
+          }
+        },
+        {
+          "provider": "autogen_core.tools.FunctionTool",
+          "component_type": "tool",
+          "version": 1,
+          "component_version": 1,
+          "description": "Get the weather forecast for a specific location",
+          "label": "FunctionTool",
+          "config": {
+            "source_code": "def get_weather(location: str) -> str:\n return f'The weather in {location} is 23 degrees celsius and Sunny.'",
             "name": "weather_forecast",
             "description": "Get the weather forecast for a specific location",
-            "content": "def get_weather(location: str) -> str:\n return f'The weather in {location} is 25 degrees celsius and Sunny.'",
-            "tool_type": "PythonFunction"
+            "global_imports": [],
+            "has_cancellation_support": false
           }
-        ],
-        "terminations": [
-          {
-            "component_type": "termination",
-            "description": "Terminate the conversation when the user mentions 'TERMINATE'",
-            "termination_type": "TextMentionTermination",
+        }
+      ],
+      "terminations": [
+        {
+          "provider": "autogen_agentchat.conditions.TextMentionTermination",
+          "component_type": "termination",
+          "version": 1,
+          "component_version": 1,
+          "description": "Terminate the conversation if a specific text is mentioned.",
+          "label": "TextMentionTermination",
+          "config": {
             "text": "TERMINATE"
-          },
-          {
-            "component_type": "termination",
-            "description": "Terminate the conversation after 10 messages",
-            "termination_type": "MaxMessageTermination",
-            "max_messages": 10
-          },
-          {
-            "component_type": "termination",
-            "description": "Terminate the conversation when the user mentions 'TERMINATE' or after 10 messages",
-            "termination_type": "CombinationTermination",
-            "operator": "or",
+          }
+        },
+        {
+          "provider": "autogen_agentchat.conditions.MaxMessageTermination",
+          "component_type": "termination",
+          "version": 1,
+          "component_version": 1,
+          "description": "Terminate the conversation after a maximum number of messages have been exchanged.",
+          "label": "MaxMessageTermination",
+          "config": {
+            "max_messages": 10,
+            "include_agent_event": false
+          }
+        },
+        {
+          "provider": "autogen_agentchat.base.OrTerminationCondition",
+          "component_type": "termination",
+          "version": 1,
+          "component_version": 1,
+          "description": null,
+          "label": "OrTerminationCondition",
+          "config": {
             "conditions": [
               {
+                "provider": "autogen_agentchat.conditions.TextMentionTermination",
                 "component_type": "termination",
-                "description": "Terminate the conversation when the user mentions 'TERMINATE'",
-                "termination_type": "TextMentionTermination",
-                "text": "TERMINATE"
+                "version": 1,
+                "component_version": 1,
+                "description": "Terminate the conversation if a specific text is mentioned.",
+                "label": "TextMentionTermination",
+                "config": {
+                  "text": "TERMINATE"
+                }
               },
               {
+                "provider": "autogen_agentchat.conditions.MaxMessageTermination",
                 "component_type": "termination",
-                "description": "Terminate the conversation after 10 messages",
-                "termination_type": "MaxMessageTermination",
-                "max_messages": 10
+                "version": 1,
+                "component_version": 1,
+                "description": "Terminate the conversation after a maximum number of messages have been exchanged.",
+                "label": "MaxMessageTermination",
+                "config": {
+                  "max_messages": 10,
+                  "include_agent_event": false
+                }
               }
             ]
           }
-        ]
-      }
+        }
+      ]
     }
   }
+}
