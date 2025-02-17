@@ -184,49 +184,6 @@
               "version": 1,
               "component_version": 1,
               "description": "An agent that provides assistance with tool use.",
-              "label": "ReviewerAgent",
-              "config": {
-                "name": "reviewer_agent",
-                "model_client": {
-                  "provider": "autogen_ext.models.openai.AzureOpenAIChatCompletionClient",
-                  "component_type": "model",
-                  "version": 1,
-                  "component_version": 1,
-                  "description": "Chat completion client for OpenAI hosted models.",
-                  "label": "AzureOpenAIChatCompletionClient",
-                  "config": {
-                    "model": "gpt-4o-mini",
-                    "api_key": "sk-...",
-                    "azure_endpoint": "https://{your-custom-endpoint}.openai.azure.com/",
-                    "azure_deployment": "{your-azure-deployment}",
-                    "api_version": "2024-06-01"
-                  }
-                },
-                "tools": [
-                ],
-                "handoffs": [],
-                "model_context": {
-                  "provider": "autogen_core.model_context.UnboundedChatCompletionContext",
-                  "component_type": "chat_completion_context",
-                  "version": 1,
-                  "component_version": 1,
-                  "description": "An unbounded chat completion context that keeps a view of the all the messages.",
-                  "label": "UnboundedChatCompletionContext",
-                  "config": {}
-                },
-                "description": "You are a reviewer agent. Evaluate the content provided by the writer agent and offer constructive feedback for improvement.",
-                "system_message": "You are a reviewer agent. Evaluate the content provided by the writer agent, offering constructive feedback for improvement. Score the content from 1 to 5 based on its quality and alignment with the user request. If the score is 5, respond with 'TERMINATE'. Do not use bold style.",
-                "model_client_stream": false,
-                "reflect_on_tool_use": false,
-                "tool_call_summary_format": "{result}"
-              }
-            },
-            {
-              "provider": "autogen_agentchat.agents.AssistantAgent",
-              "component_type": "agent",
-              "version": 1,
-              "component_version": 1,
-              "description": "An agent that provides assistance with tool use.",
               "label": "WriterAgent",
               "config": {
                 "name": "writer_agent",
@@ -259,6 +216,49 @@
                 },
                 "description": "You are a writer agent. Generate content based on user requests.",
                 "system_message": "You are a writer agent responsible for generating content based on user requests. Incorporate feedback from reviewer agents to iteratively improve the content until it meets the highest quality standards.",
+                "model_client_stream": false,
+                "reflect_on_tool_use": false,
+                "tool_call_summary_format": "{result}"
+              }
+            },
+            {
+              "provider": "autogen_agentchat.agents.AssistantAgent",
+              "component_type": "agent",
+              "version": 1,
+              "component_version": 1,
+              "description": "An agent that provides assistance with tool use.",
+              "label": "ReviewerAgent",
+              "config": {
+                "name": "reviewer_agent",
+                "model_client": {
+                  "provider": "autogen_ext.models.openai.AzureOpenAIChatCompletionClient",
+                  "component_type": "model",
+                  "version": 1,
+                  "component_version": 1,
+                  "description": "Chat completion client for OpenAI hosted models.",
+                  "label": "AzureOpenAIChatCompletionClient",
+                  "config": {
+                    "model": "gpt-4o-mini",
+                    "api_key": "sk-...",
+                    "azure_endpoint": "https://{your-custom-endpoint}.openai.azure.com/",
+                    "azure_deployment": "{your-azure-deployment}",
+                    "api_version": "2024-06-01"
+                  }
+                },
+                "tools": [
+                ],
+                "handoffs": [],
+                "model_context": {
+                  "provider": "autogen_core.model_context.UnboundedChatCompletionContext",
+                  "component_type": "chat_completion_context",
+                  "version": 1,
+                  "component_version": 1,
+                  "description": "An unbounded chat completion context that keeps a view of the all the messages.",
+                  "label": "UnboundedChatCompletionContext",
+                  "config": {}
+                },
+                "description": "You are a reviewer agent. Evaluate the content provided by the writer agent and offer constructive feedback for improvement.",
+                "system_message": "You are a reviewer agent. Evaluate the content provided by the writer agent, offering constructive feedback for improvement. Score the content from 1 to 5 based on its quality and alignment with the user request. If the score is 5, respond with 'TERMINATE'. Do not use bold style.",
                 "model_client_stream": false,
                 "reflect_on_tool_use": false,
                 "tool_call_summary_format": "{result}"
