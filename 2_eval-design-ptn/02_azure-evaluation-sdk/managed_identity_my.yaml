@@ -1,0 +1,5 @@
+identity:
+  type: system_assigned,user_assigned
+  tenant_id: 16b3c013-d300-468d-ac64-7eda0820b6d3
+  user_assigned_identities:
+    /subscriptions/3d4d3dd0-79d4-40cf-a94e-b4154812c6ca/resourcegroups/AOAI-group3/providers/Microsoft.ManagedIdentity/userAssignedIdentities/SCHyoUserAssignedManagedIdentity: {}

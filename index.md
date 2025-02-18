@@ -8,7 +8,7 @@ permalink: /
 {: .no_toc }
 
 [Requirements](#requirements){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 }
-[View it on GitHub][Agent Innovator Lab]{: .btn .fs-5 .mb-4 .mb-md-0 }
+[View it on GitHub](https://github.com/Azure/agent-innovator-lab){: .btn .fs-5 .mb-4 .mb-md-0 }
 
 # Agent Innovoator Lab
 
