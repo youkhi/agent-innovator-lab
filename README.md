@@ -25,6 +25,7 @@ Provided below is a list of currently published modules:
 | Lab 1. Agentic Design Pattern | [Practice representative patterns of Agentic RAG](1_agentic-design-ptn) |
 | Lab 2. Evaluation Design Pattern | [Practice the Evaluation-Driven RAG patterns](2_eval-design-ptn)  |
 | Lab 3. Optimization Design Pattern | In Developmet  |
+| Lab Intermission. Agentic Workflow Design Lab | [Design Agentic Workflow before each hands-on session ](lab_intermission) |
 
 
 ## Requirements
