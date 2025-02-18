@@ -1,3 +1,9 @@
+---
+layout: home
+title: Optimization Design Patterns
+nav_order: 1
+---
+
 # Agent Innovoator Lab
 
 The Agent Innovator Lab is designed to provide a structured learning experience for AI agent development by leveraging Microsoft Azure's core services (Data & AI, App, and Infra). Each lab focuses on a specific topic, covering areas such as search algorithm optimization, agentic design patterns, and evaluation frameworks. Through this hands-on workshop, participants will gain practical experience in building, optimizing, and evaluating Azure-based AI agents, ultimately driving innovation and enhancing real-world AI system deployment.
