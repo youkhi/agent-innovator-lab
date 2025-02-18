@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Building a Basic Agent
+title: Lab 0. Building a Basic Agent
 permalink: /0_basic_agent/
 has_children: true
 nav_order: 4

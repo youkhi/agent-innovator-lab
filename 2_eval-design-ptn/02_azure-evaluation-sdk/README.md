@@ -2,7 +2,7 @@
 layout: default
 title: Azure Evaluation SDK
 permalink: /2_eval-design-ptn_02_azure-evaluation-sdk/
-parent: Evaluation Driven Design Patterns
+parent: Lab 2. Evaluation Driven Design Patterns
 nav_order: 6.2
 ---
 

@@ -2,7 +2,7 @@
 layout: default
 title: Major Agentic Design Patterns - Plan and Execute 
 permalink: /1_agentic-design-ptn_02_plan-and-execute/
-parent: Major Agentic RAG Design Patterns 
+parent: Lab 1. Major Agentic Design Patterns 
 nav_order: 5.2
 ---
 

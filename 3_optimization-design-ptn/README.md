@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Optimization Design Patterns
+title: Lab 3. Optimization Design Patterns
 nav_order: 7
 ---
 

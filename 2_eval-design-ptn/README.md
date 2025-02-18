@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Evaluation Driven Design Patterns
+title: Lab 2. Evaluation Driven Design Patterns
 permalink: /2_eval-design-ptn/
 has_children: true
 nav_order: 6

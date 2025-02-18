@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Building a Basic RAG with AI Search
+title: Lab 0. Building a Basic RAG with AI Search
 nav_order: 3
 ---
 

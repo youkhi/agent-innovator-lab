@@ -2,7 +2,7 @@
 layout: default
 title: Major Agentic Design Patterns - Reflection 
 permalink: /1_agentic-design-ptn_01_reflection/
-parent: Major Agentic RAG Design Patterns 
+parent: Lab 1. Major Agentic Design Patterns 
 nav_order: 5.1
 ---
 

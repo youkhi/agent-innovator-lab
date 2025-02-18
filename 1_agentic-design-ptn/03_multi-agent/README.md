@@ -2,7 +2,7 @@
 layout: default
 title: Major Agentic Design Patterns - Multi-Agent
 permalink: /1_agentic-design-ptn_03_multi-agent/
-parent: Major Agentic RAG Design Patterns 
+parent: Lab 1. Major Agentic Design Patterns 
 nav_order: 5.3
 ---
 

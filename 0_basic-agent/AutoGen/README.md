@@ -2,7 +2,7 @@
 layout: default
 title: Basic of Agent - AutoGen
 permalink: /0_basic-agent_AutoGen/
-parent: Building a Basic Agent
+parent: Lab 0. Building a Basic Agent
 nav_order: 2.1
 ---
 

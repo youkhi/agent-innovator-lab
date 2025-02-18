@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Major Agentic RAG Design Patterns 
+title: Lab 1. Major Agentic Design Patterns 
 permalink: /1_agentic-design-ptn/
 has_children: true
 nav_order: 5
