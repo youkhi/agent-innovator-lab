@@ -1,8 +1,11 @@
 ---
-layout: home
+layout: default
 title: Major Agentic Design Patterns - Plan and Execute 
-nav_order: 4.2
+permalink: /1_agentic-design-ptn_02_plan-and-execute/
+parent: Major Agentic RAG Design Patterns 
+nav_order: 5.2
 ---
+
 
 # Plan and Execute 
 ---

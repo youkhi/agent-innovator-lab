@@ -1,7 +1,9 @@
 ---
-layout: home
+layout: default
 title: Major Agentic Design Patterns - Reflection 
-nav_order: 4.1
+permalink: /1_agentic-design-ptn_01_reflection/
+parent: Major Agentic RAG Design Patterns 
+nav_order: 5.1
 ---
 
 # Major Agentic Design Patterns - Reflection 

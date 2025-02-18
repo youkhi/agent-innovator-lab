@@ -1,5 +1,5 @@
 ---
-layout: home
+layout: default
 title: Building a Basic RAG with AI Search
 nav_order: 3
 ---

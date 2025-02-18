@@ -1,10 +1,13 @@
 ---
-layout: home
-title: Evaluation Driven Design Pattern
-nav_order: 5
+layout: default
+title: Evaluation Driven Design Patterns
+permalink: /2_eval-design-ptn/
+has_children: true
+nav_order: 6
 ---
 
-# Evaluation Driven Design Pattern
+
+# Evaluation Driven Design Patterns
 Delve into evaluation-driven design for agentic AI, featuring human-in-the-loop architecture, batch evaluation with your data, tracing-based scheduling, safety evaluators, and adversarial simulator usage. Key Skills is testing and benchmarking AI agents, integrating human feedback loops, ensuring ethical and safe AI operation.
 
 

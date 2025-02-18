@@ -1,7 +1,9 @@
 ---
-layout: home
+layout: default
 title: Azure Evaluation SDK
-nav_order: 5.2
+permalink: /2_eval-design-ptn_02_azure-evaluation-sdk/
+parent: Evaluation Driven Design Patterns
+nav_order: 6.2
 ---
 
 # Azure Evaluation SDK

@@ -1,7 +1,9 @@
 ---
-layout: home
+layout: default
 title: Building a Basic Agent
-nav_order: 2
+permalink: /0_basic_agent/
+has_children: true
+nav_order: 4
 ---
 
 # Building a Basic Agent

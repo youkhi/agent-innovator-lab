@@ -1,6 +1,8 @@
 ---
-layout: home
+layout: default
 title: Basic of Agent - LangGraph
+permalink: /0_basic-agent_LangGraph/
+parent: Building a Basic Agent
 nav_order: 2.2
 ---
 

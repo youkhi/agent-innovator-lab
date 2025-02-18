@@ -1,7 +1,9 @@
 ---
-layout: home
+layout: default
 title: Major Agentic RAG Design Patterns 
-nav_order: 4.1
+permalink: /1_agentic-design-ptn/
+has_children: true
+nav_order: 5
 ---
 
 # Major Agentic Design Patterns

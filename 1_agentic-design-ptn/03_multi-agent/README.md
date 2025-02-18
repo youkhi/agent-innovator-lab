@@ -1,7 +1,9 @@
 ---
-layout: home
+layout: default
 title: Major Agentic Design Patterns - Multi-Agent
-nav_order: 4.1
+permalink: /1_agentic-design-ptn_03_multi-agent/
+parent: Major Agentic RAG Design Patterns 
+nav_order: 5.3
 ---
 
 # Major Agentic Design Patterns - Multi-Agent

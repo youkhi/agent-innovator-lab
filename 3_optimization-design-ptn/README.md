@@ -1,7 +1,7 @@
 ---
-layout: home
+layout: default
 title: Optimization Design Patterns
-nav_order: 6
+nav_order: 7
 ---
 
 #### 01_FAQ layer

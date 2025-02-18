@@ -1,8 +1,11 @@
 ---
-layout: home
+layout: default
 title: Human-in-the-loop in agentic architecture
-nav_order: 5.1
+permalink: /2_eval-design-ptn_01_human-in-the-loop/
+parent: Evaluation Driven Design Patterns
+nav_order: 6.1
 ---
+
 
 # Human-in-the-loop in agentic architecture
 ---
