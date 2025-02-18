@@ -14,7 +14,7 @@ This hands-on lab is suitable for the following purposes:
 
 ----------------------------------------------------------------------------------------
 
-## List of workshops (TBD)
+## List of workshops
 
 Provided below is a list of currently published modules:
 
