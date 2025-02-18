@@ -36,7 +36,8 @@ exclude:
     - README.md
     - SUPPORT.md
     - vendor
-    # - 0_lab_preparation/README_ja.md
+    # - 0_basic-agent/AutoGen/README.md
+    # - 0_basic-agent/AutoGen/README.md
     # - 0_lab_preparation/why_finetune_ja.md
     # - 1_synthetic-qa-generation/README_ja.md
 

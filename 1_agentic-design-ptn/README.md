@@ -1,49 +1,34 @@
-# Reflection
+---
+layout: home
+title: Major Agentic RAG Design Patterns 
+nav_order: 4.1
 ---
 
-The Reflection Pattern in Retrieval-Augmented Generation (RAG) refers to a method where the system iteratively refines its responses by incorporating feedback from previous generations. Instead of generating an answer in a single pass, the model evaluates its own output, identifies potential errors or gaps, and retrieves additional relevant information to improve accuracy and coherence. This approach enhances the quality of responses by enabling self-correction and iterative learning, making it particularly useful for complex queries requiring deep reasoning or factual accuracy.
+# Major Agentic Design Patterns
 
-## [AutoGen Hands-On](./AutoGen)
+## Reflection
+The Reflection pattern in Retrieval-Augmented Generation (RAG) refers to a method where the system iteratively refines its responses by incorporating feedback from previous outputs. Instead of generating an answer in a single pass, the model evaluates its own output, identifies potential errors or gaps, and retrieves additional relevant information to improve accuracy and coherence. This approach enhances the quality of responses by enabling self-correction and iterative learning, making it particularly useful for complex queries requiring deep reasoning or high factual accuracy.
 
-## [LangGraph Hands-On](./LangGraph)
+![Reflection](./images/reflection.png)
 
-## Representative patterns
+## Tool Use
+The Tool Use pattern enables an AI system to call upon external resources (e.g., databases, APIs, specialized models, or even software tools) to supplement its capabilities. By leveraging these external functionalities, the model can access updated information, perform specialized tasks like calculations or translations, and validate its own outputs. This approach extends the system’s scope and accuracy, especially for real-time data retrieval, advanced analytics, or domain-specific operations that exceed the model’s core knowledge base.
 
-### Self-RAG
+![Tool use](./images/tooluse.png)
 
-Self-RAG reflects on the retrieved documents and generated responses, and includes a self-evaluation process to improve the quality of the generated answers.
+## Planning
+The Planning pattern involves the AI system explicitly structuring a step-by-step strategy to address a query or solve a complex problem. By organizing tasks, determining dependencies, and outlining a logical flow of actions, the model can tackle multi-faceted or long-form reasoning tasks more effectively. This pattern often includes iterative refinement, where the system checks its reasoning at each stage, updates its plan as needed, and ensures that each step builds coherently toward a final, accurate answer. The Plan-and-Execute framework is a strategy for retrieval-augmented generation (RAG) that divides complex reasoning tasks into two distinct phases: planning and execution. While traditional ReAct agents think one step at a time, plan-and-execute emphasizes explicit, long-term planning.
 
-Original paper says Self-RAG generates special tokens, termed "reflection tokens," to determine if retrieval would enhance the response, allowing for on-demand retrieval integration. 
-But in practice, we can ignore reflection tokens and let LLM decides if each document is relevant or not.
+![Planning](./images/planning.png)
 
-Corrective RAG (CRAG) is similar to Self-RAG, but Self-RAG focuses on self-reflection and self-evaluation, while CRAG focuses on refining the entire retrieval process including web search.
+## Multi-Agent
+The Multi-Agent pattern is an advanced AI framework where multiple specialized agents collaborate to improve retrieval and generation processes. Instead of a single model handling all tasks, different agents are assigned specific roles, such as retrieval, planning, reasoning, verification, and generation. These agents communicate and refine outputs iteratively, leading to more accurate, context-aware, and explainable responses. Multi-Agent RAG is particularly useful for complex problem-solving, knowledge-intensive tasks, and long-context reasoning, enhancing the reliability and efficiency of AI-generated content.
 
-- **Self-RAG**: Trains the LLM to be self-sufficient in managing retrieval and generation processes. By generating reflection tokens, the model controls its behavior during inference, deciding when to retrieve information and how to critique and improve its own responses, leading to more accurate and contextually appropriate outputs. 
-- **CRAG**: Focuses on refining the retrieval process by evaluating and correcting the retrieved documents before they are used in generation. It integrates additional retrievals, such as web searches, when initial retrievals are insufficient, ensuring that the generation is based on the most relevant and accurate information available.
+![Multi-Agent](./images/multiagent.png)
 
-### Corrective RAG
-
-Corrective RAG (CRAG) is a methodology that adds a step to the RAG (Retrieval Augmented Generation) strategy to evaluate the documents found during the search process and refine the knowledge. This includes a series of processes to check the search results before generation and, if necessary, perform auxiliary searches to generate high-quality answers.
-
-- Retrieval Grader: Evaluates the relevance of retrieved documents and assigns a score to each document.
-- Web Search Integration: If quality of retrieved documents is low, CRAG uses web searches to augment retrieval results. It optimizes search results through query rewriting.
-
-### Adaptive RAG
-Adaptive RAG predicts the **complexity of the input question** using a SLM/LLM and selects an appropriate processing workflow accordingly.
-
-- **Very simple question (No Retrieval)**: Generates answers without RAG.
-- **Simple question (Single-shot RAG)**: Efficiently generates answers through a single-step search and generation.
-- **Complex question (Iterative RAG)**: Provides accurate answers to complex questions through repeated multi-step search and generation.
-
-Adaptive-RAG, Self-RAG, and Corrective RAG are similar approach, but they have different focuses.
-
-- **Adaptive-RAG**: Dynamically selects appropriate retrieval and generation strategies based on the complexity of the question.
-- **Self-RAG**: The model determines the need for retrieval on its own, performs retrieval when necessary, and improves the quality through self-reflection on the generated answers.
-- **Corrective RAG**: Evaluates the quality of retrieved documents, and performs additional retrievals such as web searches to supplement the information if the reliability is low.
 
 **Reference**
 - [ReAct paper](https://arxiv.org/abs/2210.03629)
 - [Plan-and-Solve paper](https://arxiv.org/abs/2305.04091)
-- [Baby-AGI project](https://github.com/yoheinakajima/babyagi)  
-- [Corrective RAG paper](https://arxiv.org/pdf/2401.15884)  
-- [Adaptive-RAG paper](https://arxiv.org/abs/2403.14403)  
+- [Multi-Agent Supervisor Concept](https://langchain-ai.github.io/langgraph/concepts/multi_agent/#supervisor)  
+- [Multi-Agent Collabration Concept](https://langchain-ai.github.io/langgraph/concepts/multi_agent/#network) 

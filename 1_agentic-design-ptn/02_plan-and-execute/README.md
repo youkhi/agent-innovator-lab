@@ -1,3 +1,9 @@
+---
+layout: home
+title: Major Agentic Design Patterns - Plan and Execute 
+nav_order: 4.2
+---
+
 # Plan and Execute 
 ---
 

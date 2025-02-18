@@ -1,3 +1,9 @@
+---
+layout: home
+title: Basic of Agent - AutoGen
+nav_order: 2.1
+---
+
 # AutoGen
 
 ---
@@ -16,3 +22,5 @@ Microsoft AutoGen offers two primary APIs: **AgentChat** and **Core**. Each serv
 | **Learning Curve**   | Lower learning curve due to high-level abstractions and preset configurations, enabling faster development.                                              | Steeper learning curve owing to its foundational nature, requiring a deeper understanding of agent-based architectures and event-driven programming.         |
 | **Integration**      | Integrates with the Core API, utilizing its runtime environment for message handling and agent management, but abstracts many complexities.              | Serves as the underlying framework upon which AgentChat is built, providing the essential components for agent communication, lifecycle management, and message routing. |
 | **Examples**         | Creating a simple assistant agent that can perform tasks using predefined tools.                                                                         | Implementing a distributed multi-agent system where agents have specialized roles and communicate through custom message types and handlers.                |
+
+### [Hands-On](1_basic-concept-with-autogen-studio.ipynb)

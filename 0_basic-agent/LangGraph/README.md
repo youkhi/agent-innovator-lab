@@ -1,3 +1,9 @@
+---
+layout: home
+title: Basic of Agent - LangGraph
+nav_order: 2.2
+---
+
 # LangGraph
 
 ---
@@ -13,3 +19,5 @@ LangGraph is a robust framework for developing stateful, multi-actor application
 - **Multi-Agent Collaboration**: LangGraph makes it easy to design multi-agent environments, where multiple autonomous agents communicate and collaborate to complete complex tasks. It supports event-driven execution, allowing agents to operate asynchronously, respond to real-time events, and coordinate decisions dynamically.
 
 - **Human-in-the-Loop Support**:One of LangGraph’s key strengths is its built-in support for human intervention. Workflows can pause execution at critical decision points, request human validation or input, and then resume execution, making it ideal for applications requiring human oversight, such as legal document review, customer service escalation, or AI-assisted research.
+
+### [Hands-On](1_building-graph-practice.ipynb)

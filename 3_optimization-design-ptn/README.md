@@ -1,3 +1,9 @@
+---
+layout: home
+title: Optimization Design Patterns
+nav_order: 6
+---
+
 #### 01_FAQ layer
 #### 01_Caching (CAG)
 #### 02_Long-Context-Compression (Cost+Latency optimization; Token length optimization)

@@ -1,3 +1,9 @@
+---
+layout: home
+title: Building a Basic Agent
+nav_order: 2
+---
+
 # Building a Basic Agent
 ---
 
