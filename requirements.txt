@@ -20,3 +20,4 @@ bs4==0.0.2
 azure-ai-inference==1.0.0b8
 azure-monitor-opentelemetry==1.6.4
 autogenstudio==0.4.1.1
+langchain-experimental==0.3.4
