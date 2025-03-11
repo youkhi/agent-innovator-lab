@@ -33,6 +33,8 @@ Before starting, you should meet the following requirements:
 
 - [Access to Azure OpenAI Service](https://go.microsoft.com/fwlink/?linkid=2222006)
 - [Azure AI Foundry getting started](https://int.ai.azure.com/explore/gettingstarted): Need to create a project
+- [Access to Azure AI Search](https://learn.microsoft.com/en-us/azure/search/search-what-is-azure-search)
+- [Access to Azure Bing Search](https://learn.microsoft.com/en-us/bing/search-apis/bing-web-search/create-bing-search-service-resource)
 
 - ***[Evaluation driven design pattern]*** Need to grant ***Storage Blob Data Contributor*** at the storage of AI Foundry role to user, group, service principle and managed Identity which you are trying to access the data executing evaluators in cloud.
 
