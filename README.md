@@ -32,9 +32,12 @@ Provided below is a list of currently published modules:
 Before starting, you should meet the following requirements:
 
 - [Access to Azure OpenAI Service](https://go.microsoft.com/fwlink/?linkid=2222006)
-- [Azure AI Foundry getting started](https://int.ai.azure.com/explore/gettingstarted): Create a project
+- [Azure AI Foundry getting started](https://int.ai.azure.com/explore/gettingstarted): Need to create a project
 
-- ***[Evaluation driven LLMOps]*** Need to grant ***Storage File Data Privileged Contributor, Storage Blob Data Contributor*** at the storage of AI Foundry role to user, group, service principle and managed Identity which you are trying to access the data.
+- ***[Evaluation driven design pattern]*** Need to grant ***Storage Blob Data Contributor*** at the storage of AI Foundry role to user, group, service principle and managed Identity which you are trying to access the data executing evaluators in cloud.
+
+- ***[Evaluation driven design pattern - custom evaluator]*** Need to access ***Azure ML*** and ***Storage Account*** to upload your custom evaluators and data.
+
 
 **Please do not forget to modify the `.env` file to match your account. Rename `sample.env` to `.env` or copy and use it**
 
