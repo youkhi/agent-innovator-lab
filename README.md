@@ -40,6 +40,8 @@ Before starting, you should meet the following requirements:
 
 - ***[Evaluation driven design pattern - custom evaluator]*** Need to access ***Azure ML*** and ***Storage Account*** to upload your custom evaluators and data.
 
+- In order to run ***azure.ai.evaluation.evaluate***, ***Azure CLI*** installed and you are logged into your Azure account by running ***az login***.
+
 
 **Please do not forget to modify the `.env` file to match your account. Rename `sample.env` to `.env` or copy and use it**
 
