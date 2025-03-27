@@ -55,6 +55,7 @@ pip install -r requirements.txt
 ```
 
 ### If you are using Azure ML Compute Instance
+- First you need to create and set up a compute instance on AI Foundry, then access the compute instance on Azure ML 
 ```shell
 git clone https://github.com/Azure/agent-innovator-lab.git
 cd agent-innovator-lab && conda activate azureml_py310_sdkv2
