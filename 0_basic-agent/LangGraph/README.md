@@ -22,4 +22,14 @@ LangGraph is a robust framework for developing stateful, multi-actor application
 
 - **Human-in-the-Loop Support**:One of LangGraph’s key strengths is its built-in support for human intervention. Workflows can pause execution at critical decision points, request human validation or input, and then resume execution, making it ideal for applications requiring human oversight, such as legal document review, customer service escalation, or AI-assisted research.
 
-### [Hands-On](1_building-graph-practice.ipynb)
+### Hands-On labs
+
+#### [Building a Graph with LangGraph](1_building-graph-practice.ipynb)
+Before implementing something concrete, it is important to practice conceptualizing the graph flow and drawing it yourself. This exercise will help you understand the structure of the graph and the relationships between different nodes.
+
+#### LangGraph Studio (MacOS Only)
+LangGraph Studio is a visual development environment designed to help users build, test, and deploy stateful, multi-step AI workflows using LangGraph, an open-source framework built on top of LangChain. It allows users to create complex agent behaviors and conversational flows with memory and branching logic, using an easy-to-use visual interface. LangGraph Studio is especially useful for prototyping and debugging AI agents that require multiple steps, tools, and decision-making paths.
+
+You need to install Docker and the latest `.dmg` file from the LangGraph Studio repository to run the LangGraph Studio. Currently, LangGraph Studio is only available for MacOS. You also need to login LangSmith or need to LangSmith API key.
+
+- https://github.com/langchain-ai/langgraph-studio
