@@ -65,10 +65,11 @@ pip install -r requirements.txt
 ## Trouble Shooting
 
 ### EvaluationException: (UserError) Failed to connect to your Azure AI project. Please check if the project scope is configured correctly, and make sure you have the necessary access permissions. Status code: 401.
-- run az login. To set up your tenant scope, try the option --scope https://graph.microsoft.com//.default 
+- run `az login`. To set up your tenant scope, try the option `--scope https://graph.microsoft.com//.default`
+- For example, `az login --scope https://graph.microsoft.com//.default`
 
 ### azure_ai_project evaluationexception: (internalerror) azure ml managed identity configuration not found in environment. invalid_scope
-- Check the managed identity role that your compute instance has. You can create a compute instance on Azure AI Foundry to avoid the complex identity setup. 
+- Check the managed identity role that your compute instance has. You can create a **compute instance on Azure AI Foundry (not on Azure ML)** to avoid the complex identity setup. 
 
 ## Contributing
 
