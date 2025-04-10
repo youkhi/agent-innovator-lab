@@ -62,6 +62,20 @@ cd agent-innovator-lab && conda activate azureml_py310_sdkv2
 pip install -r requirements.txt
 ```
 
+## 🔥New Feature (10-Apr-2025)
+### Semantic Kernel hands-on lab<br>
+- This hands-on demonstrates how to use Semantic Kernel (SK) to build a simple agentic application.
+- The lab covers the following topics:
+    - Core concepts and architecture of Semantic Kernel (SK)
+- Agent implementation examples:
+    - Azure AI Agent, Azure Assistant Agent, Chat Completion Agent, Azure Responses Agent
+- Tool and connector integration:
+    - Azure AI Search, File Tool, Bing Search API via Bing Search Connector, Bing Grounding Tool, Azure Evaluation SDK 
+- How to build a simple agentic application using SK, leveraging various agentic design patterns (e.g. Corrective / Adaptive RAG)
+- You can also leverage existing evaluation design patterns and optimization design patterns to evaluate and optimize your Semantic Kernel application.
+  <a href="https://github.com/Azure/agent-innovator-lab/blob/main/0_basic-agent/SK/1_basic-concept-with-sk.ipynb">Go to notebook</a>
+
+
 ## Trouble Shooting
 
 ### EvaluationException: (UserError) Failed to connect to your Azure AI project. Please check if the project scope is configured correctly, and make sure you have the necessary access permissions. Status code: 401.

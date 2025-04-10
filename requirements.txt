@@ -4,7 +4,7 @@ python-dotenv==1.0.1
 tenacity==9.0.0
 pandas==2.2.3 
 tiktoken==0.8.0
-semantic-kernel==1.27.0
+semantic-kernel==1.27.2
 asyncio==3.4.3
 azure-ai-projects==1.0.0b8
 azure-ai-evaluation==1.2.0
