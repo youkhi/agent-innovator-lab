@@ -171,3 +171,6 @@ cython_debug/
 .pypirc
 
 0_basic-rag/output/
+
+3_optimization-design-ptn/03_prompt-optimization/logs
+3_optimization-design-ptn/03_prompt-optimization/results
