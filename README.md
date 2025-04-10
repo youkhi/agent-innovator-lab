@@ -62,7 +62,12 @@ cd agent-innovator-lab && conda activate azureml_py310_sdkv2
 pip install -r requirements.txt
 ```
 
-## 🔥New Feature (10-Apr-2025)
+## 🔥 New Feature (10-Apr-2025)
+
+### Prompt Optimization using PromptWizard<br>
+- This hands-on demonstrates how to optimize prompts using PromptWizard. PromptWizard, released as open source and paper by Microsoft, is a prompt optimization tool for maximizing the performance of LLM. It is a prompt optimization framework that employs a self-evolving mechanism in which LLM generates, critiques, refines, and continuously improves prompts and examples through feedback and synthesis
+- <a href="https://github.com/Azure/agent-innovator-lab/tree/main/3_optimization-design-ptn/03_prompt-optimization">Go to notebook</a>
+
 ### Semantic Kernel hands-on lab<br>
 - This hands-on demonstrates how to use Semantic Kernel (SK) to build a simple agentic application.
 - The lab covers the following topics:
