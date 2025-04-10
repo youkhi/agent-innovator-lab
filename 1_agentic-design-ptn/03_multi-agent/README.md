@@ -11,6 +11,7 @@ nav_order: 5.3
 
 Multi-Agent is an advanced AI framework where **multiple specialized agents collaborate** to improve retrieval and generation processes. Instead of a single model handling all tasks, different agents are assigned specific roles, such as retrieval, planning, reasoning, verification, and generation. These agents **communicate and refine outputs iteratively**, leading to more accurate, context-aware, and explainable responses. Multi-Agent RAG is particularly useful for complex problem-solving, knowledge-intensive tasks, and long-context reasoning, enhancing the reliability and efficiency of AI-generated content.
 
+## [Semantic Kernel Hands-On](./SK)
 
 ## [AutoGen Hands-On](./AutoGen)
 

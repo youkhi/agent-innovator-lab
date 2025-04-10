@@ -13,6 +13,8 @@ nav_order: 5.1
 
 The Reflection Pattern in Retrieval-Augmented Generation (RAG) refers to a method where the system iteratively refines its responses by incorporating feedback from previous generations. Instead of generating an answer in a single pass, the model evaluates its own output, identifies potential errors or gaps, and retrieves additional relevant information to improve accuracy and coherence. This approach enhances the quality of responses by enabling self-correction and iterative learning, making it particularly useful for complex queries requiring deep reasoning or factual accuracy.
 
+## [Semantic Kernel Hands-On](./SK)
+
 ## [AutoGen Hands-On](./AutoGen)
 
 ## [LangGraph Hands-On](./LangGraph)
