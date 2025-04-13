@@ -8,9 +8,10 @@ This hands-on lab is suitable for the following purposes:
 
 1. 1-day workshop (4-7 hours depending on customer)
 2. Hackathon starter code
-3. Reference guide for RAG/Multi-Agent design patterns
+3. Reference guide for Evaluation-driven Multi-Agent design patterns
 
-[**Requirements**](#requirements) | [**Get started**](#get-started) 
+
+[**Hands-on guide**](https://azure.github.io/agent-innovator-lab/) | [**Requirements**](#requirements) | [**Get started**](#get-started) 
 
 ----------------------------------------------------------------------------------------
 
