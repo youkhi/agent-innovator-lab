@@ -30,3 +30,4 @@ pyarrow==19.0.1
 llama-index==0.12.28
 llama-index-core==0.12.28
 networkx
+faiss-cpu==1.10.0
