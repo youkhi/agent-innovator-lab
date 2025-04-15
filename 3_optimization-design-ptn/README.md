@@ -12,7 +12,7 @@ This lab focuses on the design patterns that can be used to optimize the perform
 
 ## 1. Evaluation on Streaming
 
-## 2. Semantic Caching
+## 2. Caching
 
 ## 3. Prompt Optimization using PromptWizard 
 
