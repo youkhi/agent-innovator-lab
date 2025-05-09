@@ -1,3 +1,9 @@
+---
+layout: home
+title: Agent Innovator Lab (English)
+nav_order: 1
+permalink: /
+---
 # Agent Innovator Lab
 {: .no_toc }
 
