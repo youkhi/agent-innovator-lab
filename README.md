@@ -49,17 +49,36 @@ Before starting, you should meet the following requirements:
 ## Get started
 
 ### If you are using your own local 
-```shell
+```bash
+# Create a virtual environment
+python -m venv venv
+
+# Activate the virtual environment
+# On Windows
+venv\Scripts\activate
+
+# On macOS/Linux
+source venv/bin/activate
+
+# Set up your environment
 git clone https://github.com/Azure/agent-innovator-lab.git
+
 cd agent-innovator-lab 
+
 pip install -r requirements.txt
+
+
 ```
 
 ### If you are using Azure ML Compute Instance
-- First you need to create and set up a compute instance on AI Foundry, then access the compute instance on Azure ML 
-```shell
+```bash
+conda create -n venv_agentlab python=3.11
+
+# Set up your environment
 git clone https://github.com/Azure/agent-innovator-lab.git
-cd agent-innovator-lab && conda activate azureml_py310_sdkv2
+
+cd agent-innovator-lab 
+
 pip install -r requirements.txt
 ```
 

@@ -64,19 +64,39 @@ Agent Innovator Lab은 현재 5개의 핸즈온을 제공하고 있습니다. �
     - content safety 및 cost control
     - 답변 품질과 응답속도 사이 의 trade-off 고려
 
-### 로컬 환경
-```shell
+### 로컬환경경 
+```bash
+# Create a virtual environment
+python -m venv venv
+
+# Activate the virtual environment
+# On Windows
+venv\Scripts\activate
+
+# On macOS/Linux
+source venv/bin/activate
+
+# Set up your environment
 git clone https://github.com/Azure/agent-innovator-lab.git
+
 cd agent-innovator-lab 
+
 pip install -r requirements.txt
+
 ```
 
 ### Azure ML Compute Instance
-```shell
+```bash
+conda create -n venv_agentlab python=3.11
+
+# Set up your environment
 git clone https://github.com/Azure/agent-innovator-lab.git
-cd agent-innovator-lab && conda activate azureml_py310_sdkv2
+
+cd agent-innovator-lab 
+
 pip install -r requirements.txt
 ```
+
 
 ## Contributing
 
