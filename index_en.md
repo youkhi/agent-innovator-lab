@@ -2,7 +2,7 @@
 layout: home
 title: Agent Innovator Lab (English)
 nav_order: 1.1
-permalink: /
+permalink: /en
 ---
 # Agent Innovator Lab
 {: .no_toc }
