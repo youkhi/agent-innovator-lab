@@ -1,7 +1,7 @@
 ---
 layout: home
 title: Agent Innovator Lab (English)
-nav_order: 1
+nav_order: 1.1
 permalink: /
 ---
 # Agent Innovator Lab
