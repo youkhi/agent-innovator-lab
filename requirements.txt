@@ -31,3 +31,9 @@ llama-index==0.12.28
 llama-index-core==0.12.28
 networkx
 faiss-cpu==1.10.0
+scrapy==2.13.0
+requests>=2.31.0
+nbimporter>=0.3.4
+httpx>=0.24.1
+nest-asyncio>=1.5.8
+beautifulsoup4>=4.12.2
