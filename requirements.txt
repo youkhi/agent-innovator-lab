@@ -6,7 +6,7 @@ python-dotenv
 tenacity==9.0.0
 pandas==2.2.3 
 tiktoken==0.8.0
-semantic-kernel==1.27.2
+semantic-kernel==1.30.0
 asyncio==3.4.3
 azure-ai-projects==1.0.0b8
 azure-ai-evaluation==1.2.0
@@ -37,3 +37,4 @@ nbimporter>=0.3.4
 httpx>=0.24.1
 nest-asyncio>=1.5.8
 beautifulsoup4>=4.12.2
+
