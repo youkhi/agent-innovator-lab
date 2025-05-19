@@ -189,22 +189,19 @@ def web_search(query, num=5, search_type="web", web_search_mode=None):
     Returns:
         List of search results
     """
-    # Get web search mode from environment variables
-    WEB_SEARCH_MODE = os.getenv("WEB_SEARCH_MODE", "bing").lower()
-    # Override with function argument if provided
-    if web_search_mode:
-        WEB_SEARCH_MODE = web_search_mode
-    print(f"Using web search mode: {WEB_SEARCH_MODE}")
+    if web_search_mode is None:
+        web_search_mode = os.getenv("WEB_SEARCH_MODE", "bing").lower()
+    print(f"Using web search mode: {web_search_mode}")
     # Check if query is a dictionary with separate search queries
     query_for_search = query
     if isinstance(query, dict):
-        if WEB_SEARCH_MODE == "bing" and "llm_query" in query:
+        if web_search_mode == "bing" and "llm_query" in query:
             query_for_search = query["llm_query"]
         elif "web_search" in query:
             query_for_search = query["web_search"]
     
     # Use appropriate search engine based on environment variable
-    if WEB_SEARCH_MODE == "bing":
+    if web_search_mode == "bing":
         try:
             logger.info(f"Using Bing Grounding search for query: {query_for_search}")
             return bing_grounding_search(query_for_search, num, search_type)
