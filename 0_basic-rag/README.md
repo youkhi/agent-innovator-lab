@@ -13,6 +13,7 @@ Azure AI Search is a cloud-based, AI-powered search service that enables intelli
 
 > ✨ **_Note_** <br>
 > Please check the regional support for Azure AI Search before you get started - https://learn.microsoft.com/en-us/azure/search/search-region-support
-> In order to use the Semantic Search feature, check your region availability and pricing tier. Make sure it is at least Standard S3.
+> You can create Azure AI Search resource with Standard tier that is good enough to run most of hands-on. 
+> In order to use the **Semantic Search** feature, check your region availability and pricing tier. Make sure it is at least Standard S3.
 
 ### [Hands-On](1_basic-rag.ipynb)
