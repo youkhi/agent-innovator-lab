@@ -1,3 +1,4 @@
+agent-framework==1.0.0b251007
 azure-search-documents==11.5.2
 azure-identity
 openai>=1.70.0
@@ -20,16 +21,16 @@ azure-ai-ml==1.24.0
 # ModuleNotFoundError: No module named 'bs4'
 bs4==0.0.2
 azure-ai-inference==1.0.0b8
-azure-monitor-opentelemetry==1.6.7
+azure-monitor-opentelemetry==1.8.1
 autogenstudio==0.4.1.1
 langchain-experimental==0.3.4
 matplotlib==3.10.0
 ipywidgets==8.1.5
 pyyaml~=6.0.2
 pyarrow==19.0.1
-llama-index==0.12.28
-llama-index-core==0.12.28
-networkx
+# llama-index==0.12.28
+# llama-index-core==0.12.28
+# networkx
 faiss-cpu==1.10.0
 scrapy==2.13.0
 requests>=2.31.0

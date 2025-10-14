@@ -82,7 +82,22 @@ cd agent-innovator-lab
 pip install -r requirements.txt
 ```
 
-## 🔥 New Feature (10-Apr-2025)
+## 🔥 New Feature (Oct. 14, 2025)
+
+### MS Agent Framework hands-on lab<br>
+- This hands-on demonstrates how to build agentic AI applications using **Microsoft Agent Framework**, the unified evolution of Semantic Kernel and AutoGen.
+- The lab covers the following topics:
+    - **Core concepts and architecture**: Chat agents, tools & functions, multi-agent orchestration, and open standards (MCP, A2A, OpenAPI)
+    - **What's different from SK/AutoGen**: Simplified agent creation, native thread management, inline tool registration, and built-in observability
+    - **Agentic Design Patterns Implementation**:
+        - **Reflection Pattern (Adaptive RAG)**: Implements quality-driven workflows with Worker-Reviewer cycles, featuring intent classification, retrieval grading, and automatic query rewriting for improved response quality
+        - **Plan-and-Execute Pattern**: Demonstrates task decomposition with sequential and parallel workflow orchestration, enabling complex multi-step operations through intelligent planning and execution
+        - **Multi-Agent Collaboration**: Explores three collaboration patterns - Group Chat (turn-based refinement), Concurrent Execution (parallel analysis), and Magentic Orchestration (intelligent coordination for complex tasks)
+    - **Azure Integration**: Seamless integration with Azure OpenAI, Azure AI Search, Azure Evaluation SDK, and Azure AI Foundry Agent Service
+- Each pattern includes step-by-step implementation, real-world use cases, and best practices for production deployment
+- <a href="https://github.com/Azure/agent-innovator-lab/tree/main/0_basic-agent/AgentFramework">Go to basic concepts notebook</a> | <a href="https://github.com/Azure/agent-innovator-lab/tree/main/1_agentic-design-ptn">Go to design patterns</a>
+
+## 🔥 New Feature (Apr. 10, 2025)
 
 ### Prompt Optimization using PromptWizard<br>
 - This hands-on demonstrates how to optimize prompts using PromptWizard. PromptWizard, released as open source and paper by Microsoft, is a prompt optimization tool for maximizing the performance of LLM. It is a prompt optimization framework that employs a self-evolving mechanism in which LLM generates, critiques, refines, and continuously improves prompts and examples through feedback and synthesis

@@ -10,9 +10,14 @@ nav_order: 5.2
 # Plan and Execute 
 ---
 
+## [MS Agent Framework](./AgentFramework)
+
 ## [AutoGen Hands-On](./AutoGen)
 
 ## [LangGraph Hands-On](./LangGraph)
+
+## [Semantic Kernel Hands-On](./SK)
+
 
 ## Representative patterns
 
