@@ -72,7 +72,7 @@ pip install -r requirements.txt
 
 ### If you are using Azure ML Compute Instance
 ```bash
-conda create -n venv_agentlab python=3.11
+conda create -n venv_agentlab python=3.12
 
 # Set up your environment
 git clone https://github.com/Azure/agent-innovator-lab.git
