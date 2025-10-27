@@ -79,7 +79,7 @@ git clone https://github.com/Azure/agent-innovator-lab.git
 
 cd agent-innovator-lab 
 
-pip install -r requirements.txt
+pip install -r requirements.txt --use-deprecated=legacy-resolver
 ```
 
 ## 🔥 New Feature (Oct. 14, 2025)

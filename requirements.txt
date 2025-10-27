@@ -1,4 +1,4 @@
-agent-framework==1.0.0b251007
+agent-framework==1.0.0b251016
 azure-search-documents==11.5.2
 azure-identity
 openai>=1.70.0
@@ -11,9 +11,9 @@ semantic-kernel==1.33.0
 asyncio==3.4.3
 azure-ai-projects==1.0.0b11
 azure-ai-evaluation==1.8.0
-autogen-core==0.4.6
-autogen-agentchat==0.4.6
-autogen-ext==0.4.6
+# autogen-core==0.4.6
+# autogen-agentchat==0.4.6
+# autogen-ext==0.4.6
 langchain-openai==0.3.4
 azure-genai-utils==0.0.2.20
 promptflow-devkit==1.17.2
